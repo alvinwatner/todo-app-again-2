@@ -1,30 +1,27 @@
-import 'package:todo_apps_v2/ui/bottom_sheets/notice/notice_sheet.dart';
-import 'package:todo_apps_v2/ui/dialogs/info_alert/info_alert_dialog.dart';
-import 'package:todo_apps_v2/features/home/home_view.dart';
-import 'package:todo_apps_v2/features/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-// @stacked-import
+import 'package:todo_apps_v2/services/todo_service.dart';
+import 'package:todo_apps_v2/ui/bottom_sheets/add_todo/add_todo_sheet.dart';
+import 'package:todo_apps_v2/ui/dialogs/delete_confirmation/delete_confirmation_dialog.dart';
+import 'package:todo_apps_v2/features/home/home_view.dart';
+import 'package:todo_apps_v2/features/startup/startup_view.dart';
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: HomeView),
+    MaterialRoute(page: HomeView, initial: true),
     MaterialRoute(page: StartupView),
-// @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
-    // @stacked-service
+    LazySingleton(classType: TodoService),
   ],
   bottomsheets: [
-    StackedBottomsheet(classType: NoticeSheet),
-    // @stacked-bottom-sheet
+    StackedBottomsheet(classType: AddTodoSheet),
   ],
   dialogs: [
-    StackedDialog(classType: InfoAlertDialog),
-    // @stacked-dialog
+    StackedDialog(classType: DeleteConfirmationDialog),
   ],
 )
 class App {}
